@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artifact Simulation</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <div style="display:none" id="artifact-div">
+            <p>
+                <h1 id="artifact-type"></h1>
+            </p>
+            <p>
+                <h2 id="mainstat"></h2>
+                <h2 id="mainstat-value"></h2>
+            </p>
+            <p>
+                <h4 id="level"></h4>
+            </p>
+            <div id="substats-div"></div>
+        </div>
+        <div id="btn-div">
+            <button onclick="getData()" id="getData-btn">Get Artifact</button>
+            <button onclick="levelup(0)" id="levelup-btn1" style="display:none">Level +4</button>
+            <button onclick="levelup(1)" id="levelup-btn2" style="display:none">Level +20</button>
+        </div>
+    </div>
+</body>
+</html>
