@@ -5,7 +5,7 @@ async function getData(){
     btn.disabled = true;
     btn.innerText = 'Fetching...';
 
-    const url = "https://artifact-simulation.herokuapp.com/get_artifact/";
+    const url = "https://artifact-simulation-api.herokuapp.com/get_artifact/";
     const res = await fetch(url);
     const data = await res.json();
     console.log(data);
@@ -77,7 +77,7 @@ async function levelup(post_value){
     var lvlup_btn2 = document.getElementById('levelup-btn2');
     lvlup_btn2.disabled = true;
 
-    await postData('https://artifact-simulation.herokuapp.com/levelup/', { "data": post_value })
+    await postData('https://artifact-simulation-api.herokuapp.com/levelup/', { "data": post_value })
     .then(data => {
         console.log(data);
         artifact = data;
