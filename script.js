@@ -36,14 +36,29 @@ function showArtifact(){
     mainstat.innerHTML = artifact['mainstat'];
 
     var mainstat_value = document.getElementById('mainstat-value');
-    mainstat_value.innerHTML = artifact['mainstat_value'];
+
+    if(artifact['mainstat'][artifact['mainstat'].length - 1] === '%'){
+        mainstat_value.innerHTML = artifact['mainstat_value'] + '%';
+    }
+    else{
+        mainstat_value.innerHTML = artifact['mainstat_value'];
+    }
 
     var level = document.getElementById('level');
     level.innerHTML = "+" + artifact['level'];
 
     substats = "";
     for(var i = 0; i < artifact['substats_count']; i++){
-        substats += "<li>" + "<h3>" + artifact['substats'][i][0] + "+" + artifact['substats'][i][1].toFixed(1) + "</h3>" + "</li>";
+        stat = artifact['substats'][i][0];
+        v = artifact['substats'][i][1];
+
+        if(stat[stat.length - 1] === '%'){
+            stat = stat.replace('%', '');
+            substats += "<li>" + "<h3>" + stat + "+" + v.toFixed(1) + "%</h3>" + "</li>";
+        }
+        else{
+            substats += "<li>" + "<h3>" + stat + "+" + v.toFixed(1) + "</h3>" + "</li>";
+        }
     }
 
     substats = '<ul>' + substats + '</ul>';
@@ -95,4 +110,5 @@ async function levelup(post_value){
         lvlup_btn2.disabled = false;
     });
 }
+
 
