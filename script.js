@@ -6,9 +6,10 @@ async function getData(){
     btn.innerText = 'Fetching...';
 
     const url = "https://artifact-simulation-api.herokuapp.com/get_artifact/";
+    //const url = "http://localhost:8000/get_artifact/";
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
+    //console.log(data);
 
     artifact = data;
 
@@ -92,8 +93,20 @@ async function levelup(post_value){
     var lvlup_btn2 = document.getElementById('levelup-btn2');
     lvlup_btn2.disabled = true;
 
-    await postData('https://artifact-simulation-api.herokuapp.com/levelup/', { "data": post_value })
-    .then(data => {
+    var post_url = 'https://artifact-simulation-api.herokuapp.com/levelup/';
+    //var post_url = 'http://localhost:8000/levelup/';
+
+    //console.log(artifact);
+
+    await postData(post_url, { "canlevelup": artifact['canlevelup'],
+                                    "type": artifact['type'],
+                                    "mainstat": artifact['mainstat'],
+                                    "mainstat_value": artifact['mainstat_value'],
+                                    "substats": artifact['substats'],
+                                    "substats_count": artifact['substats_count'],
+                                    "level": artifact['level'],
+                                    "levelup": post_value
+    }).then(data => {
         console.log(data);
         artifact = data;
         showArtifact();
@@ -110,5 +123,3 @@ async function levelup(post_value){
         lvlup_btn2.disabled = false;
     });
 }
-
-
